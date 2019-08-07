@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"href="/static/css/main.css">
+    <title>Black White Game</title>
+</head>
+<body>
+    <div class="board">
+        {% for tile in board %}{% if ((loop.index - 1) % 8) == 0 %}<br>{% endif %}{% if loop.last %}&nbsp;{% endif %}<a onclick="change.hand.value = '{{tile.pic}}';change.submit();"><img src=/static/pic/{{tile.pic_show}}></a>{% endfor %}
+    </div>
+    <form name="change" action="{{ url_for('change') }}" method=post>
+         <input name="hand" type="hidden" value="">
+        {% for tile in board %}
+            <input name="board" type="hidden" value="{{tile.pic}}">
+        {% endfor %}
+     </form>
+</body>
+</html>
